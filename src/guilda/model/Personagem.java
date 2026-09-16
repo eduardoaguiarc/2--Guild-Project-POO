@@ -20,6 +20,8 @@ public abstract class Personagem {
         setNome(nome);
         setNivel(nivel);
         this.id = contador++;
+        this.experiencia = 0;
+        this.energia = 100;
     }
 
     public static int getContador() {
@@ -34,44 +36,47 @@ public abstract class Personagem {
         return nome;
     }
 
-    public final void setNome(String nome) {
-        if (nome == null || nome.isBlank()) {
-            System.err.println("O nome não pode estar vazio.");
-        }
-        this.nome = nome;
-    }
-
     public String getNivel() {
         return nivel;
-    }
-
-    public final void setNivel(String nivel) {
-        if (nivel == null || nivel.isBlank()) {
-            System.err.println("O nível não pode estar vazio.");
-        }
-        this.nivel = nivel;
     }
 
     public int getExperiencia() {
         return experiencia;
     }
 
-    public void setExperiencia(int experiencia) {
-        if (experiencia < 0) {
-            System.err.println("A experiência não pode ser negativa.");
-        }
-        this.experiencia = experiencia;
-    }
-
     public int getEnergia() {
         return energia;
     }
 
+    public final void setNivel(String nivel) {
+        if (nivel == null) {
+            throw new IllegalArgumentException("O nivel de um personagem não pode ser nulo.");
+        }
+        this.nivel = nivel;
+    }
+
+    public final void setNome(String nome) {
+        if (nome == null) {
+            throw new IllegalArgumentException("O personagem deve ter um nome.");
+        }
+    }
+
+    public void setExperiencia(int experiencia) {
+        if (experiencia < 0) {
+            throw new IllegalArgumentException("A experiencia não pode ser negativo");
+        }
+        this.experiencia = experiencia;
+    }
+
     public void setEnergia(int energia) {
         if (energia < 0) {
-            System.err.println("A energia não pode ser negativa.");
+            throw new IllegalArgumentException(
+                    "A energia não pode ser negativa."
+            );
         }
+
         this.energia = energia;
+
     }
 
     public int receberExperiencia(int quantidade) {

@@ -34,22 +34,22 @@ public class Guerreiro extends Personagem implements Combatente {
         this.armadura = armadura;
     }
 
-    public void atacarInimigo() {
+    public void atacarInimigo(Personagem personagem) {
 
     }
 
     @Override
     public int calcularPoder() {
-        return 0;
+        return forca * 2 + energia;
     }
 
     @Override
     public int danoAtaque() {
-        return 0;
+        return forca * 3;
     }
 
     @Override
     public int danoDefesa() {
-        return 0;
+        return forca + 20;
     }
 }
