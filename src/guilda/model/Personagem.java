@@ -16,8 +16,6 @@ public abstract class Personagem {
         this(nome, "Iniciante");
     }
 
-    // As subclasses usam super(nome) ou super(nome, nivel).
-    // O ID deve ser atribuído na criação; apenas incrementar o contador não bastava.
     public Personagem(String nome, String nivel) {
         setNome(nome);
         setNivel(nivel);
@@ -28,8 +26,6 @@ public abstract class Personagem {
         return contador;
     }
 
-    // Sem setter para o contador: reiniciá-lo poderia gerar IDs repetidos.
-
     public final int getId() {
         return id;
     }
@@ -38,7 +34,6 @@ public abstract class Personagem {
         return nome;
     }
 
-    // final impede sobrescrita durante a inicialização feita pelo construtor.
     public final void setNome(String nome) {
         if (nome == null || nome.isBlank()) {
             System.err.println("O nome não pode estar vazio.");
@@ -83,8 +78,6 @@ public abstract class Personagem {
         if (quantidade < 0) {
             System.err.println("A quantidade de experiência não pode ser negativa.");
         }
-        // Antes o método apenas retornava o valor, sem conceder experiência.
-        // addExact evita que um estouro de int transforme o total em negativo.
         experiencia = Math.addExact(experiencia, quantidade);
         return experiencia;
     }
