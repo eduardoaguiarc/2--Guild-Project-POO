@@ -19,12 +19,12 @@ public class Equipe {
         this.personagens = new ArrayList<>();
     }
 
-    public void removerPersonagem(Personagem personagem) {
-        if (personagem != null && personagens.contains(personagem)) {
-            personagens.remove(personagem);
-        } else {
-            throw new IllegalArgumentException("A lista já esta vazia.");
+    public boolean removerPersonagem(Personagem personagem) {
+        if (personagem != null && personagem.equals(lider)) {
+            lider = null;
         }
+
+        return personagens.remove(personagem);
     }
 
     public void adicionarPersonagem(Personagem personagem) {
@@ -62,4 +62,7 @@ public class Equipe {
         return null;
     }
 
+    public List<Personagem> getPersonagens() {
+        return personagens;
+    }
 }
