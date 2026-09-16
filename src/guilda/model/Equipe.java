@@ -28,11 +28,19 @@ public class Equipe {
     }
 
     public void adicionarPersonagem(Personagem personagem) {
-        if (personagem == null && !personagens.contains(personagem)) {
-            personagens.add(personagem);
-        } else {
-            throw new IllegalArgumentException("Não foi possivel adicionar o personagem");
+        if (personagem == null) {
+            throw new IllegalArgumentException(
+                    "O personagem não pode ser nulo."
+            );
         }
+
+        if (personagens.contains(personagem)) {
+            throw new IllegalArgumentException(
+                    "O personagem já está na equipe."
+            );
+        }
+
+        personagens.add(personagem);
     }
 
     public void adicionarPersonagem(Personagem personagem, boolean tornarLider) {
@@ -63,6 +71,6 @@ public class Equipe {
     }
 
     public List<Personagem> getPersonagens() {
-        return personagens;
+        return List.copyOf(personagens);
     }
 }

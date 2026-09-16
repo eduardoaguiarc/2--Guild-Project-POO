@@ -49,7 +49,7 @@ public abstract class Personagem {
     }
 
     public final void setNivel(String nivel) {
-        if (nivel == null) {
+        if ((nivel == null) && nivel.isBlank()) {
             throw new IllegalArgumentException("O nivel de um personagem não pode ser nulo.");
         }
         this.nivel = nivel;
@@ -59,13 +59,18 @@ public abstract class Personagem {
         if (nome == null) {
             throw new IllegalArgumentException("O personagem deve ter um nome.");
         }
+
+        this.nome = nome;
     }
 
-    public void setExperiencia(int experiencia) {
+    public int setExperiencia(int quantidade) {
         if (experiencia < 0) {
             throw new IllegalArgumentException("A experiencia não pode ser negativo");
         }
-        this.experiencia = experiencia;
+
+        experiencia = Math.addExact(experiencia, quantidade);
+
+        return experiencia;
     }
 
     public void setEnergia(int energia) {

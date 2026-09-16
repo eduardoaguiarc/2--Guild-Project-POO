@@ -5,6 +5,8 @@ import guilda.contract.Especialista;
 public class Mago extends Personagem implements Especialista {
     private int nivelInteligencia;
     private int mana;
+    private static final int CUSTO_EXPLOSAO_ARCANA = 30;
+    private static final int MULTIPLICADOR_EXPLOSAO_ARCANA = 5;
 
     public Mago(String nome, int nivelInteligencia, int mana) {
         this(nome, "Iniciante", nivelInteligencia, mana);
@@ -33,13 +35,12 @@ public class Mago extends Personagem implements Especialista {
 
     public final void setMana(int mana) {
         if (mana < 0) {
-            System.err.println("A mana não pode ser negativa.");
+            throw new IllegalArgumentException(
+                    "A mana não pode ser negativa."
+            );
         }
-        this.mana = mana;
-    }
 
-    public void atirarMagia() {
-        // TODO: definir custo de mana e efeito da magia antes de implementar.
+        this.mana = mana;
     }
 
     @Override
@@ -59,6 +60,31 @@ public class Mago extends Personagem implements Especialista {
 
     @Override
     public void usarHabilidadeEspecial() {
+        if (mana < CUSTO_EXPLOSAO_ARCANA) {
+            System.out.println(
+                    nome + " não possui mana suficiente " +
+                            "para usar Explosão Arcana."
+            );
 
+            return;
+        }
+
+        mana -= CUSTO_EXPLOSAO_ARCANA;
+
+        int danoEspecial =
+                nivelInteligencia *
+                        MULTIPLICADOR_EXPLOSAO_ARCANA;
+
+        System.out.println(
+                nome + " utilizou Explosão Arcana!"
+        );
+
+        System.out.println(
+                "Dano causado: " + danoEspecial
+        );
+
+        System.out.println(
+                "Mana restante: " + mana
+        );
     }
 }

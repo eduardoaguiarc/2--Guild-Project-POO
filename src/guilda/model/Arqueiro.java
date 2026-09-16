@@ -34,10 +34,6 @@ public class Arqueiro extends Personagem implements Combatente {
         this.qtdFlechas = qtdFlechas;
     }
 
-    public void atirarFlechas() {
-
-    }
-
     @Override
     public int calcularPoder() {
         return destreza * 2 + qtdFlechas;
